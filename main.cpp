@@ -1,50 +1,41 @@
 #include <iostream>
+#include <cstdint>
+#include <string>
+#include <cstring>
 using namespace std;
 
-class Integer
+std::string add_binary(uint64_t a, uint64_t b)
 {
-public:
-    Integer(int number)
-    {
-        value=number;
-    }
-    friend int compare(const Integer& obj1, const Integer& obj2);
+    string x;
+    long int z = a + b;
+    long int i, j, temp;
 
-    void print() const
+    if(z == 0)
     {
-        std::cout << "Value: " << value << std::endl;
-    }
-private:
-    int value;
-};
-
-int compare(const Integer& obj1, const Integer& obj2)
-{
-    return obj1.value - obj2.value;
-}
-
-void print(const Integer& num1, const Integer& num2)
-{
-    auto result = compare(num1, num2);
-    if(result > 0)
-    {
-        cout << "num1 greater than num2" << endl;
-    }
-    else if(result < 0)
-    {
-        cout << "num1 less than num2" << endl;
+        return x = "0";
     }
     else
     {
-        cout << "num1 equal than num2" << endl;
-    }
+            while(z > 0)
+        {
+            x += to_string(z % 2);
+            z = z / 2;
+        }
 
+        int length = strlen(x.c_str());
+        
+        for(i = 0, j = length - 1; i < j; i++, j--)
+        {
+            temp = x[i];
+            x[i] = x[j];
+            x[j] = temp;
+        }
+
+        return x;
+    }
 }
 
 int main()
 {
-    print(Integer{10}, Integer{15});
-    print(Integer{15}, Integer{10});
-    print(Integer{15}, Integer{15});
+    cout << add_binary(0, 0) << endl;
 }
-
